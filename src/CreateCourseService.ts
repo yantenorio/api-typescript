@@ -1,11 +1,11 @@
 interface Course {
     name: string;
-    duration: number; 
+    duration?: number; //it will define this attribute as optional 
     educator: string;
 }
 
 // @route    GET /
-//@desc this function creates the course using the interface params 
+//@desc this function creates the course using the interface attribute 
 class CreateCourseService {
     execute({ duration, educator, name }: Course) {
         console.log();
