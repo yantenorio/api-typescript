@@ -4,6 +4,8 @@ interface Course {
     educator: string;
 }
 
+// @route    GET /
+//@desc this function creates the course using the interface params 
 class CreateCourseService {
     execute({ duration, educator, name }: Course) {
         console.log();
