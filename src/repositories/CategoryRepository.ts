@@ -6,16 +6,18 @@ interface ICreateCategoryDTO {
     description: String;
 }
 
-
-//@route   POST /categories/
 //@desc    this class will handle all database functions
 class CategoryRepository {
+    // imports the category model
     private categories : Category[];
 
+    // initialize the class
     constructor() {
         this.categories = [];
     }
 
+    //@route   POST /categories/
+    //@desc    inserts a category in database
     create({name, description} : ICreateCategoryDTO): void {
         const category = new Category();
 
@@ -26,6 +28,12 @@ class CategoryRepository {
         });
     
         this.categories.push(category);
+    }
+
+    //@route   GET /categories/
+    //@desc    returns a list of categories
+    list(): Category[] {
+        return this.categories;
     }
 }
 
