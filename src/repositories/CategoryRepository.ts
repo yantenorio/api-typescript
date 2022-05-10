@@ -1,13 +1,8 @@
 import { Category } from "../models/Category"
-
-//DTO => DATA TRANSFER OBJECT
-interface ICreateCategoryDTO {
-    name: String;
-    description: String;
-}
+import { ICategoryRepository, ICreateCategoryDTO } from "./ICategoriesRepository";
 
 //@desc    this class will handle all database functions
-class CategoryRepository {
+class CategoryRepository implements ICategoryRepository{
     // imports the category model
     private categories : Category[];
 
