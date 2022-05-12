@@ -5,7 +5,6 @@ interface ICreateCategoryDTO {
     name: String;
     description: String;
 }
-
 interface ICategoryRepository {
     findByName(name: string) : Category;
 
