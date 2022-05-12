@@ -2,8 +2,8 @@ import { Router } from "express";
 
 import multer from "multer";
 
-import { CategoryRepository } from "../repositories/CategoryRepository";
-import { CreateCategoryService } from "../services/CreateCategoryService";
+import { CategoryRepository } from "../modules/cars/repositories/CategoryRepository";
+import { CreateCategoryService } from "../modules/cars/services/CreateCategoryService";
 
 const upload = multer({ dest: "./tmp"});
 
@@ -30,7 +30,7 @@ categoriesRoutes.get('/', (request, response) => {
     return response.status(200).json(allCategories);
 });
 
-// @route  POST/categories/import
+// @route  POST /categories/import
 // @desc   this route import a file and inserts into a temp folder
 categoriesRoutes.post('/import', upload.single("file") ,(request, response) => {
     const { file } = request;

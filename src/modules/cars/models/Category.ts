@@ -1,8 +1,8 @@
 import { v4 as uuidV4 } from 'uuid';
 
-class Category 
-{
-   id?: String;
+class Category {
+   
+    id?: String;
    name: String;
    description: String;
    created_at: Date;
