@@ -3,7 +3,8 @@ import { Router } from "express";
 import multer from "multer";
 
 import { CategoryRepository } from "../modules/cars/repositories/CategoryRepository";
-import { CreateCategoryService } from "../modules/cars/services/CreateCategoryService";
+import { createCategoryController } from "../modules/cars/useCases/createCategory";
+import { CreateCategoryUseCase } from "../modules/cars/useCases/createCategory/CreateCategoryUseCase";
 
 const upload = multer({ dest: "./tmp"});
 
@@ -13,13 +14,7 @@ const categoriesRepository = new CategoryRepository();
 //@route   POST /categories/
 //@desc    this route is used to call the create category function
 categoriesRoutes.post('/', (request, response) => {
-    const { name, description } = request.body;
-
-    const createCategoryService = new CreateCategoryService(categoriesRepository);
-
-    createCategoryService.execute({ name , description });
-
-    return response.status(201).send()
+   return createCategoryController.handle(request, response);
 });
 
 //@route   GET /categories/
