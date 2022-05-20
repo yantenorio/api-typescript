@@ -2,14 +2,12 @@ import { Router } from "express";
 
 import multer from "multer";
 
-import { CategoryRepository } from "../modules/cars/repositories/CategoryRepository";
 import { createCategoryController } from "../modules/cars/useCases/createCategory";
-import { CreateCategoryUseCase } from "../modules/cars/useCases/createCategory/CreateCategoryUseCase";
+import { listCategoriesController } from "../modules/cars/useCases/listCategory";
 
 const upload = multer({ dest: "./tmp"});
 
 const categoriesRoutes = Router();
-const categoriesRepository = new CategoryRepository();
 
 //@route   POST /categories/
 //@desc    this route is used to call the create category function
@@ -20,9 +18,7 @@ categoriesRoutes.post('/', (request, response) => {
 //@route   GET /categories/
 //@desc    this route is used to call the list categories function
 categoriesRoutes.get('/', (request, response) => {
-    const allCategories = categoriesRepository.list();
-
-    return response.status(200).json(allCategories);
+    return listCategoriesController.handle(request, response);
 });
 
 // @route  POST /categories/import

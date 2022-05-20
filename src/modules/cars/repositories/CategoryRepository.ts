@@ -3,12 +3,24 @@ import { ICategoryRepository, ICreateCategoryDTO } from "./ICategoriesRepository
 
 //@desc    this class will handle all database functions
 class CategoryRepository implements ICategoryRepository{
+
+    private static INSTANCE: CategoryRepository;
+
+
     // imports the category model
     private categories : Category[];
 
     // initialize the class
-    constructor() {
+    private constructor() {
         this.categories = [];
+    }
+
+    public static getInstance(): CategoryRepository {
+        if(!CategoryRepository.INSTANCE) {
+            CategoryRepository.INSTANCE = new CategoryRepository();
+        }
+
+        return CategoryRepository.INSTANCE;
     }
 
     //@route   POST /categories/
